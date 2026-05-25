@@ -170,6 +170,7 @@ const testDriveForm = document.querySelector("#test-drive-form");
 const buildForm = document.querySelector("#build-form");
 const dealerForm = document.querySelector("#dealer-form");
 let toastTimer;
+const submissionsKey = "miniSubmissions";
 
 function showToast(message, isError = false) {
   clearTimeout(toastTimer);
@@ -195,19 +196,38 @@ function formPayload(form) {
   return Object.fromEntries(new FormData(form).entries());
 }
 
-async function apiPost(path, payload) {
-  const response = await fetch(path, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload),
-  });
-  const data = await response.json().catch(() => ({}));
+function loadSubmissions() {
+  return JSON.parse(localStorage.getItem(submissionsKey) || "[]");
+}
 
-  if (!response.ok || data.ok === false) {
-    throw new Error(data.error || "Something went wrong. Please try again.");
-  }
+function saveSubmission(kind, payload) {
+  const submissions = loadSubmissions();
+  const entry = {
+    id: crypto.randomUUID ? crypto.randomUUID() : `${Date.now()}-${Math.random()}`,
+    kind,
+    created_at: new Date().toISOString(),
+    payload,
+  };
 
-  return data;
+  submissions.unshift(entry);
+  localStorage.setItem(submissionsKey, JSON.stringify(submissions));
+  return entry;
+}
+
+function demoDealers(city) {
+  const place = city.trim() || "Mumbai";
+  return [
+    {
+      name: `MINI ${place} Studio`,
+      address: `12 Performance Avenue, ${place}`,
+      phone: "+91 90000 12001",
+    },
+    {
+      name: `MINI ${place} Service Hub`,
+      address: `48 Cooper Road, ${place}`,
+      phone: "+91 90000 12002",
+    },
+  ];
 }
 
 function openModal(name) {
@@ -283,10 +303,10 @@ testDriveForm.addEventListener("submit", async (event) => {
   setLoading(testDriveForm, true);
 
   try {
-    await apiPost("/api/test-drive", formPayload(testDriveForm));
+    saveSubmission("test_drives", formPayload(testDriveForm));
     testDriveForm.reset();
     closeModal();
-    showToast("Test drive request received. The MINI team will contact you shortly.");
+    showToast("Demo request saved locally. Your Vercel frontend is ready.");
   } catch (error) {
     showToast(error.message, true);
   } finally {
@@ -300,7 +320,7 @@ buildForm.addEventListener("submit", async (event) => {
   setLoading(buildForm, true);
 
   try {
-    await apiPost("/api/build", payload);
+    saveSubmission("builds", payload);
     localStorage.setItem("miniConfiguration", JSON.stringify(payload));
     closeModal();
     showToast("Configuration saved to your garage.");
@@ -317,9 +337,11 @@ dealerForm.addEventListener("submit", async (event) => {
   dealerResults.innerHTML = "";
 
   try {
-    const data = await apiPost("/api/dealer", formPayload(dealerForm));
+    const payload = formPayload(dealerForm);
+    const dealers = demoDealers(payload.city);
+    saveSubmission("dealer_searches", payload);
     const fragment = document.createDocumentFragment();
-    data.dealers.forEach((dealer) => {
+    dealers.forEach((dealer) => {
       const card = document.createElement("article");
       const name = document.createElement("strong");
       const address = document.createElement("span");
@@ -346,9 +368,9 @@ newsletterForm.addEventListener("submit", async (event) => {
   setLoading(newsletterForm, true);
 
   try {
-    await apiPost("/api/newsletter", formPayload(newsletterForm));
+    saveSubmission("newsletters", formPayload(newsletterForm));
     newsletterForm.reset();
-    showToast("You are subscribed to MINI updates.");
+    showToast("Demo subscription saved locally.");
   } catch (error) {
     showToast(error.message, true);
   } finally {

@@ -4,6 +4,7 @@ const filterSelect = document.querySelector("#filter");
 const toast = document.querySelector("#admin-toast");
 let submissions = [];
 let toastTimer;
+const submissionsKey = "miniSubmissions";
 
 const labels = {
   test_drives: "Test drive",
@@ -24,6 +25,16 @@ function setCounts(counts) {
   document.querySelector("#count-builds").textContent = counts.builds || 0;
   document.querySelector("#count-newsletters").textContent = counts.newsletters || 0;
   document.querySelector("#count-dealers").textContent = counts.dealer_searches || 0;
+}
+
+function countSubmissions(items) {
+  return items.reduce(
+    (counts, item) => {
+      counts[item.kind] = (counts[item.kind] || 0) + 1;
+      return counts;
+    },
+    { test_drives: 0, builds: 0, newsletters: 0, dealer_searches: 0 }
+  );
 }
 
 function formatDate(value) {
@@ -71,21 +82,15 @@ function renderTable() {
     .join("");
 }
 
-async function loadSubmissions() {
+function loadSubmissions() {
   refreshButton.disabled = true;
   refreshButton.textContent = "Loading";
 
   try {
-    const response = await fetch("/api/admin/submissions");
-    const data = await response.json();
-    if (!response.ok || !data.ok) {
-      throw new Error(data.error || "Unable to load submissions.");
-    }
-
-    submissions = data.submissions;
-    setCounts(data.counts);
+    submissions = JSON.parse(localStorage.getItem(submissionsKey) || "[]");
+    setCounts(countSubmissions(submissions));
     renderTable();
-    showToast("Dashboard updated.");
+    showToast("Local dashboard updated.");
   } catch (error) {
     submissionsBody.innerHTML = `<tr><td colspan="3">${error.message}</td></tr>`;
     showToast(error.message);

@@ -1,11 +1,19 @@
-# MINI Scroll Experience
+# MINI Cooper UI Full Website
 
-A cinematic MINI-inspired landing page with a scroll-controlled frame animation, functional forms, a Python backend, SQLite storage, and an admin dashboard.
+A frontend-only MINI-inspired website with:
+
+- Cinematic scroll-controlled frame animation
+- Premium dark UI, glow effects, responsive sections
+- Build/Test Drive/Dealer/Newsletter demo flows
+- Local admin dashboard powered by browser `localStorage`
+- Vercel-ready static deployment
 
 ## Run locally
 
+Use any static server from the project folder:
+
 ```powershell
-py server.py
+py -m http.server 5174
 ```
 
 Open:
@@ -20,8 +28,12 @@ Admin dashboard:
 http://127.0.0.1:5174/admin.html
 ```
 
-To use a different port:
+## Deploy on Vercel
 
-```powershell
-$env:PORT='5176'; py server.py
-```
+Import this GitHub repo in Vercel and use:
+
+- Framework Preset: `Other`
+- Build Command: leave empty
+- Output Directory: leave empty
+
+The project is static, so no backend setup is required.
