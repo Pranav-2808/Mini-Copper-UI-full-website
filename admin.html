@@ -1,0 +1,59 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MINI Admin</title>
+    <meta name="theme-color" content="#050505">
+    <link rel="stylesheet" href="admin.css">
+  </head>
+  <body>
+    <main class="admin-shell">
+      <header class="admin-hero">
+        <a href="/">MINI</a>
+        <div>
+          <p>Admin dashboard</p>
+          <h1>Lead cockpit</h1>
+        </div>
+        <button id="refresh" type="button">Refresh</button>
+      </header>
+
+      <section class="stats" aria-label="Submission counts">
+        <article><span>Test drives</span><strong id="count-test-drives">0</strong></article>
+        <article><span>Builds</span><strong id="count-builds">0</strong></article>
+        <article><span>Newsletters</span><strong id="count-newsletters">0</strong></article>
+        <article><span>Dealer searches</span><strong id="count-dealers">0</strong></article>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <h2>Recent submissions</h2>
+          <select id="filter" aria-label="Filter submissions">
+            <option value="all">All</option>
+            <option value="test_drives">Test drives</option>
+            <option value="builds">Builds</option>
+            <option value="newsletters">Newsletters</option>
+            <option value="dealer_searches">Dealer searches</option>
+          </select>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Type</th>
+                <th>Created</th>
+                <th>Details</th>
+              </tr>
+            </thead>
+            <tbody id="submissions">
+              <tr><td colspan="3">Loading submissions...</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+
+    <div class="toast" id="admin-toast" role="status" aria-live="polite"></div>
+    <script src="admin.js"></script>
+  </body>
+</html>

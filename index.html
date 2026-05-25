@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>MINI Scroll Experience</title>
+    <meta name="theme-color" content="#050505">
+    <link rel="preload" as="image" href="ezgif-38873a8ef8fd9200-jpg/ezgif-frame-001.jpg">
+    <link rel="preload" as="image" href="ezgif-38873a8ef8fd9200-jpg/ezgif-frame-135.jpg">
+    <link rel="preload" as="image" href="ezgif-38873a8ef8fd9200-jpg/ezgif-frame-270.jpg">
+    <link rel="stylesheet" href="styles.css">
+  </head>
+  <body class="loading">
+    <div class="loader" id="loader" aria-live="polite">
+      <div class="loader-inner">
+        <p>MINI experience</p>
+        <h2>Preparing the drive</h2>
+        <div class="loader-track">
+          <span id="loader-bar"></span>
+        </div>
+        <strong id="loader-count">0%</strong>
+      </div>
+    </div>
+
+    <main>
+      <div class="site-page">
+        <nav class="topbar" aria-label="Primary navigation">
+          <a class="brand" href="#">MINI</a>
+          <div class="nav-links">
+            <a href="#models">Models</a>
+            <a class="active" href="#explore">Explore</a>
+            <a href="#build" data-open-modal="build">Build Yours</a>
+            <a href="/admin.html">Admin</a>
+          </div>
+          <div class="nav-actions">
+            <button class="icon-button" type="button" aria-label="Find a dealer" data-open-modal="dealer">⌖</button>
+            <button class="icon-button" type="button" aria-label="Open configuration summary" data-open-modal="cart">□</button>
+            <button class="drive-button" type="button" data-open-modal="test-drive">Test drive</button>
+          </div>
+        </nav>
+
+        <section class="scroll-stage" id="explore" aria-label="Red car water reveal">
+          <div class="sticky-frame">
+            <canvas id="sequence" width="1280" height="720" aria-hidden="true"></canvas>
+            <div class="shade"></div>
+            <header class="hero-copy">
+              <p>Iconic reborn</p>
+              <h1>Performance without pretense.</h1>
+              <span>
+                Experience the legendary go-kart handling meets cutting-edge digital
+                innovation. Every curve, every bolt, every pixel designed for the thrill
+                of the drive.
+              </span>
+              <div class="button-row">
+                <a class="primary-button" href="#design">Explore design</a>
+                <a class="ghost-button" href="#specs">Specifications</a>
+              </div>
+            </header>
+            <div class="progress" aria-hidden="true">
+              <span></span>
+            </div>
+            <div class="scroll-cue" aria-hidden="true">
+              <span></span>
+            </div>
+          </div>
+        </section>
+
+        <section class="feature-grid" id="design">
+          <article class="feature-card wide visual-card">
+            <img src="ezgif-38873a8ef8fd9200-jpg/ezgif-frame-200.jpg" alt="Red MINI driving through water">
+            <div>
+              <p>Tech innovation</p>
+              <h3>Circular OLED Display</h3>
+              <span>
+                A world-first high-resolution circular display. The heart of your MINI,
+                controlling everything from Experience Modes to navigation with precision.
+              </span>
+            </div>
+          </article>
+
+          <article class="feature-card text-card">
+            <p>Jcw</p>
+            <h3>Legendary go-kart handling</h3>
+            <span>
+              Low center of gravity, wide track, and immediate steering response for
+              pure driving joy.
+            </span>
+          </article>
+
+          <article class="spec-card" id="specs">
+            <div><span>0-60 mph</span><strong>6.5s</strong></div>
+            <div><span>Horsepower</span><strong>189</strong></div>
+            <div><span>Torque</span><strong>207 lb-ft</strong></div>
+            <div><span>Drive mode</span><strong>Sport</strong></div>
+          </article>
+
+          <article class="finish-card">
+            <img src="ezgif-38873a8ef8fd9200-jpg/ezgif-frame-248.jpg" alt="Red MINI detail">
+            <strong>Chili red finish</strong>
+          </article>
+
+          <article class="feature-card wide dark-card">
+            <p>Engineering precision</p>
+            <h3>Balanced to perfection</h3>
+            <span>
+              Every chassis component is tuned for feedback. Our engineers spent
+              thousands of hours on the track to ensure every input from the driver is
+              translated into immediate, predictable action.
+            </span>
+            <div class="meter"><i></i></div>
+          </article>
+        </section>
+
+        <section class="digital-section">
+          <div class="modes">
+            <h2>Digital experience <span>modes</span></h2>
+            <article class="mode active-mode">
+              <strong>Go-Kart Mode</strong>
+              <p>Sharpened throttle response, weighted steering, and an acoustic soundtrack that heightens the sensation of speed.</p>
+            </article>
+            <article class="mode">
+              <strong>Green Mode</strong>
+              <p>Optimized for efficiency without sacrificing the iconic MINI personality. Smooth, silent, and sustainable.</p>
+            </article>
+            <article class="mode">
+              <strong>Personal Mode</strong>
+              <p>Your car, your rules. Upload background images and tune ambient lighting for a custom experience.</p>
+            </article>
+          </div>
+          <div class="oled-panel" aria-label="Circular dashboard display illustration">
+            <div class="screen">
+              <div class="dial">
+                <span>0</span>
+                <small>mph</small>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="cta" id="test-drive">
+          <h2>Ready to feel it for yourself?</h2>
+          <div class="button-row center">
+            <button class="primary-button" type="button" data-open-modal="test-drive">Book a test drive</button>
+            <button class="ghost-button" type="button" data-open-modal="build">Build your own</button>
+          </div>
+        </section>
+
+        <footer class="footer">
+          <div>
+            <h2>MINI</h2>
+            <p>Big love. Driving excitement since 1959. Join the movement of iconic performance.</p>
+          </div>
+          <div>
+            <h4>Quick links</h4>
+            <a href="#">Legal</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#" data-open-modal="dealer">Contact</a>
+          </div>
+          <div>
+            <h4>Company</h4>
+            <a href="#">Careers</a>
+            <a href="#">Social</a>
+            <a href="#">Press</a>
+          </div>
+          <form id="newsletter-form">
+            <h4>Stay updated</h4>
+            <label>
+              <span>Your email</span>
+              <input name="email" type="email" aria-label="Your email" required>
+            </label>
+            <button class="footer-submit" type="submit" aria-label="Subscribe">→</button>
+          </form>
+        </footer>
+      </div>
+    </main>
+
+    <div class="modal-layer" id="modal-layer" aria-hidden="true">
+      <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+        <button class="modal-close" type="button" aria-label="Close">×</button>
+
+        <form class="modal-form" id="test-drive-form" data-modal="test-drive">
+          <p>MINI concierge</p>
+          <h2 id="modal-title">Book a test drive</h2>
+          <div class="form-grid">
+            <label><span>Name</span><input name="name" required minlength="2"></label>
+            <label><span>Email</span><input name="email" type="email" required></label>
+            <label><span>Phone</span><input name="phone" required minlength="7"></label>
+            <label><span>City</span><input name="city" required></label>
+            <label><span>Preferred date</span><input name="date" type="date" required></label>
+            <label>
+              <span>Model</span>
+              <select name="model" required>
+                <option value="MINI Cooper S">MINI Cooper S</option>
+                <option value="MINI John Cooper Works">MINI John Cooper Works</option>
+                <option value="MINI Electric">MINI Electric</option>
+              </select>
+            </label>
+          </div>
+          <button class="primary-button full-button" type="submit">Confirm request</button>
+        </form>
+
+        <form class="modal-form" id="build-form" data-modal="build">
+          <p>Build yours</p>
+          <h2>Configure your MINI</h2>
+          <div class="form-grid">
+            <label>
+              <span>Variant</span>
+              <select name="variant" required>
+                <option value="Cooper S Sport">Cooper S Sport</option>
+                <option value="JCW Track">JCW Track</option>
+                <option value="Electric Iconic">Electric Iconic</option>
+              </select>
+            </label>
+            <label>
+              <span>Color</span>
+              <select name="color" required>
+                <option value="Chili Red">Chili Red</option>
+                <option value="Midnight Black">Midnight Black</option>
+                <option value="Nanuq White">Nanuq White</option>
+              </select>
+            </label>
+            <label>
+              <span>Experience mode</span>
+              <select name="mode" required>
+                <option value="Go-Kart">Go-Kart</option>
+                <option value="Green">Green</option>
+                <option value="Personal">Personal</option>
+              </select>
+            </label>
+            <label><span>Budget</span><input name="budget" placeholder="Optional"></label>
+          </div>
+          <button class="primary-button full-button" type="submit">Save configuration</button>
+        </form>
+
+        <form class="modal-form" id="dealer-form" data-modal="dealer">
+          <p>Dealer locator</p>
+          <h2>Find a MINI partner</h2>
+          <label><span>Your city</span><input name="city" required></label>
+          <button class="primary-button full-button" type="submit">Search dealers</button>
+          <div class="dealer-results" id="dealer-results"></div>
+        </form>
+
+        <div class="modal-form" data-modal="cart">
+          <p>Your garage</p>
+          <h2>Configuration summary</h2>
+          <div class="cart-summary" id="cart-summary">
+            <span>No configuration saved yet.</span>
+          </div>
+          <button class="primary-button full-button" type="button" data-open-modal="build">Build your MINI</button>
+        </div>
+      </section>
+    </div>
+
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
